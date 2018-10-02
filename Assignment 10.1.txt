@@ -1,0 +1,24 @@
+Assignment 10
+
+Problem Statement 
+1. Read the file in Zip format and get it into R.
+
+url <- "https://archive.ics.uci.edu/ml/machine-learning-databases/00360/AirQualityUCI.zip"
+download.file(url, destfile = "C:/Users/prash/Downloads/AirQualityUCI.zip", mode = "wb")
+unzip("C:/Users/prash/Downloads/AirQualityUCI.zip")
+
+2. Create Univariate for all the columns.
+
+univariateTable(~Date +Time +CO.GT. +PT08.S1.CO. +NMHC.GT. +C6H6.GT. +PT08.S2.NMHC. +NOx.GT. +PT08.S4.NO2. +PT08.S5.O3. +T +RH +AH, data = AirQualityUCI)
+
+3. Check for missing values in all columns.
+
+is.na.data.frame(AirQualityUCI)
+
+4. Impute the missing values using appropriate methods.
+
+tempdata<- mice(AirQualityUCI,m=5,maxit=50,meth='pmm',seed=500)
+
+5. Create bi-variate analysis for all relationships.
+
+plot(cp.ratio ~ area, data=AirQualityUCI)
